@@ -75,3 +75,37 @@ favcolor = Color.blue
 console.log(favcolor)
 favcolor = Color.green
 console.log(favcolor)
+
+enum stats{
+    attack = 100,
+    defense = 200,
+    speed = 300,
+    hp = 400,
+    special = 500,
+    total = attack + defense + speed + hp + special
+}
+let curstat: stats = stats.attack
+console.log(curstat)
+curstat = stats.defense
+console.log(curstat)
+curstat = stats.speed
+console.log(curstat)
+curstat = stats.hp
+console.log(curstat)
+curstat = stats.special
+console.log(curstat)
+curstat = stats.total
+console.log(curstat)
+let student: {
+    name: string,
+    age: number,
+    hobbies: string[],
+    isMarried?: boolean
+} = {
+    name: "jamal",
+    age: 21,
+    hobbies: ["coding","sleeping"],
+    isMarried: false
+}
+
+console.log(student.name)
