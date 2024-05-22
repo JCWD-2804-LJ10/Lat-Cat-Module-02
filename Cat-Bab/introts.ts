@@ -181,7 +181,7 @@ class pet implements Animal {
   bark(): void {
     console.log(this.name, "is barking");
     // setTimeout(() => console.log("bark bark bark kark"), 2000);
-    console.log("bark bark bark kark")
+    console.log("bark bark bark kark");
   }
 }
 const myDog: pet = new pet("Gori", 1, "labrador");
@@ -191,38 +191,38 @@ console.log("================================================================");
 console.log("Type union declaration");
 console.log("================================================================");
 
-type success ={
-    status: "success";
-    data: string;
-}
+type success = {
+  status: "success";
+  data: string;
+};
 
 type fail = {
-    status: "failure";
-    error: string;
-}
+  status: "failure";
+  error: string;
+};
 
 type response = success | fail;
 
-function handleres (result: response): void{
-    if(result.status === "success"){
-        console.log("success : ",result.data);
-    }else{
-        console.log("fail : ",result.error);
-    }
+function handleres(result: response): void {
+  if (result.status === "success") {
+    console.log("success : ", result.data);
+  } else {
+    console.log("fail : ", result.error);
+  }
 }
 
-function mathrandomgen():response{
-    const randomval = Math.random()*10
-    if(randomval < 5){
-        return {
-            status: "success",
-            data: "operation is good"
-        }
-    }else{
-        return {
-            status: "failure",
-            error: "operation is not good"
-        }
-    }
+function mathrandomgen(): response {
+  const randomval = Math.random() * 10;
+  if (randomval < 5) {
+    return {
+      status: "success",
+      data: "operation is good",
+    };
+  } else {
+    return {
+      status: "failure",
+      error: "operation is not good",
+    };
+  }
 }
 handleres(mathrandomgen());
