@@ -103,6 +103,10 @@ nav ul li{
 
 .flexCont{
     display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+    animation: slide 2s ease-in-out;
 }
 
 .flexitem{
@@ -110,4 +114,43 @@ nav ul li{
     padding: 30px;
     margin: 10px;
     border: 1px solid black;
+    animation: rotate 10s linear infinite;
+    
+}
+
+.flexitem2{
+    background: linear-gradient(to right,pink,purple,blue);
+    padding: 30px;
+    margin: 10px;
+    border: 1px solid black;
+    animation: rotate 10s linear infinite;
+    
+}
+
+.flexitem3{
+    background: radial-gradient(circle,pink,blue,red,lightblue);
+    padding: 30px;
+    margin: 10px;
+    border: 1px solid black;
+    animation: rotate 10s linear infinite;
+    
+}
+
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes slide {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
 }
