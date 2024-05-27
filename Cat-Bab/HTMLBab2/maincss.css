@@ -1,0 +1,113 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+section{
+    padding: 20px;
+    margin: 20px 0;
+    border: 1px solid #ddd;
+}
+
+.fixedpos{
+    position: fixed;
+    top: 15px;
+    left: 0;
+    width: 100%;
+    background-color: orange;
+}
+
+.static{
+    position: static;
+}
+.relative{
+    position: relative;
+    top: 10px;
+    left: 20px;
+}
+.absolute{
+    position: absolute;
+    top: 50px;
+    left: 50px;
+}
+
+nav{
+    background-color: aqua;  
+    margin: 0;
+    padding: 10px;
+    
+}
+
+nav .sticky{
+    position: sticky;
+    top: 0;
+    padding: 10px;
+
+} 
+
+nav ul{
+    display: flex;
+    justify-content: flex-end;
+}
+
+nav ul li{
+    list-style: none;
+    margin: 0 10px;
+}
+
+@media only screen and (min-width: 68px)
+{
+    .element{
+        background-color: bisque;
+    }
+}
+
+@media only screen and (min-width: 168px)
+{
+    .element{
+        background-color: paleturquoise;
+    }
+    .Gridcont{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        grid-gap: 10px;
+        max-width: 960px;
+    }
+}
+@media only screen and (min-width: 268px)
+{
+    .element{
+        background-color: lemonchiffon;
+        color: crimson;
+    }
+
+    .Gridcont{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        grid-gap: 10px;
+        max-width: 960px;
+    }
+}
+
+
+.Gridcont{
+    display: grid;
+    max-width: 960px;
+}
+
+.Gridcont div{
+    background-color: tomato;
+    padding: 30;
+}
+
+.flexCont{
+    display: flex;
+}
+
+.flexitem{
+    background-color: coral;
+    padding: 30px;
+    margin: 10px;
+    border: 1px solid black;
+}
