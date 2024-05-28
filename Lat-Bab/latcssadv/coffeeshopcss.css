@@ -23,7 +23,7 @@ nav {
 #homeimg{
     background-image: url(./img/homeimage.webp);
     width: 100%;
-    height: 75vh;
+    height: 95vh;
     background-size: cover;
 }
 .home1{
@@ -43,13 +43,44 @@ nav a{
 }
 
 .container{
-    background-color: rgba(128, 128, 128, 0.5);
+    background-color: rgba(128, 128, 128, 0.7);
     width: 100%;
     height: 100%;
     display: flex;
     align-items: center ;
+}
+
+.isicont{
     padding-left: 10%;
 }
+
+
+#menu{
+    width: 100%;
+    
+    background-color: #f4efe6;
+    display: grid;
+}
+
+.squarebox{
+    
+    background-color: white;
+    border-radius: 6px;
+
+    text-align: center ;
+}
+
+@media only screen and (min-width: 168px)
+{
+    #menu{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-gap: 10px;
+    }
+}  
+
+
+
 
 .container a{
     background-color: #6c5046;
@@ -65,6 +96,15 @@ nav a{
     
     
 }
+
+
+.menu {
+    display: grid;
+    max-width: 100%;
+    background-color: #f4efe6;
+    
+}
+
 
 #about{
     width: 100%;
@@ -88,3 +128,4 @@ nav a{
     align-items: center;
     text-align: center;
 }
+
