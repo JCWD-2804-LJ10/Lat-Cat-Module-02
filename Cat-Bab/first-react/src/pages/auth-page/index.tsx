@@ -9,7 +9,7 @@ const AuthPage = () => {
   return (
     <main>
 
-    <button onClick={() => navigate("/auth-page/landingpage/" + id,
+    <button className="text-white" onClick={() => navigate("/auth-page/landingpage/" + id,
         {
             state:{
                 text: text
