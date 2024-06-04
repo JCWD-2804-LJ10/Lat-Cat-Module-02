@@ -1,4 +1,5 @@
-import React from 'react'
+import {React} from 'react'
+import { Provider } from "react-redux";
 import {BrowserRouter,Route,Routes} from 'react-router-dom'
 import {ThemeProvider} from '../context/ThemeContext'
 import LandingPage from '../pages/landingpage'
@@ -9,9 +10,13 @@ import TodoPage from '../pages/todoPage'
 import HookPage from '../pages/hookpage'
 import ThemePage from '../pages/themepage'
 import SettingsPage from '../pages/settingspage'
-import Auth from '../pages/auth'
+import AuthPages from '../pages/AuthPages'
+import {store} from '../store/store'
+import Counting from '../pages/counting'
+
 const PageRoutes = () => {
   return (
+    <Provider store={store}>
     <ThemeProvider>
     <BrowserRouter>
     <Routes>
@@ -23,10 +28,12 @@ const PageRoutes = () => {
     <Route element={<HookPage />} path='/hook'></Route>
     <Route element={<ThemePage />} path='/'></Route>
     <Route element={<SettingsPage />} path='/settings'></Route>
-    <Route element={<Auth />} path='/auth'></Route>
+    <Route element={<AuthPages />} path='/auth'></Route>
+    <Route element={<Counting />} path='/count'></Route>
     </Routes>
     </BrowserRouter>
     </ThemeProvider>
+    </Provider>
   )
 }
 
