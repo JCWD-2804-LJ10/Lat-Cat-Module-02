@@ -13,7 +13,8 @@ import SettingsPage from '../pages/settingspage'
 import AuthPages from '../pages/AuthPages'
 import {store} from '../store/store'
 import Counting from '../pages/counting'
-
+import UsersPage from '../pages/userspage'
+import Registration from "../pages/register";
 const PageRoutes = () => {
   return (
     <Provider store={store}>
@@ -30,6 +31,8 @@ const PageRoutes = () => {
     <Route element={<SettingsPage />} path='/settings'></Route>
     <Route element={<AuthPages />} path='/auth'></Route>
     <Route element={<Counting />} path='/count'></Route>
+    <Route element={<UsersPage />} path='/user'></Route>
+    <Route element={<Registration />} path='/register'></Route>
     </Routes>
     </BrowserRouter>
     </ThemeProvider>

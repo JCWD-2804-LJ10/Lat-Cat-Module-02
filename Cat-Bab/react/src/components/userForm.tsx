@@ -1,55 +1,83 @@
-import { React, useState, useEffect, FC } from "react";
-import { createUser, updateUser, getUserById } from "../API/apiUrl";
-import { UserformProps } from "../utils/interface";
+import { useState, useEffect, FC, FormEvent } from "react";
+import { createUsers, updateUsers, getUsersById } from "../API/apiUrl";
+import { UserFormProps } from "../utils/interface";
+import loading from "./loading";
+import Swal from "sweetalert2";
 
-const userForm: FC<UserformProps> = ({ userId, onSuccess }) => {
+
+
+const UserForm: FC<UserFormProps> = ({ userId, onSuccess }) => {
   const [name, setName] = useState<string>("");
   const [avatar, setAvatar] = useState<string>("");
+  const [isLoading , setIsLoading] =useState<boolean>(false)
 
   useEffect(() => {
     if (userId) {
-      getUserById(userId).then((response: any) => {
+      setIsLoading(true)
+      getUsersById(userId).then((response: any) => {
         setName(response?.data?.name);
         setAvatar(response?.data?.avatar);
+        setIsLoading(false)
       });
     }
   }, [userId]);
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    setIsLoading(true);
     const user = { name, avatar };
     if (userId) {
-      updateUser(userId, user).then(onSuccess);
+        await updateUsers(userId, user).then(() => {
+            onSuccess;
+            setIsLoading(false);
+        }).catch(() => {
+            Swal.fire({
+                title: "Failed update",
+                text: "Failed to create user",
+                icon: "error",
+                confirmButtonText: "OK"
+            })
+        });
     } else {
-      createUser(user).then(onSuccess);
+        await createUsers (user).then(() => {
+            onSuccess;
+            setIsLoading(false);
+        }).catch(() => {
+            Swal.fire({
+                title: "Failed update",
+                text: "Failed to create user",
+                icon: "error",
+                confirmButtonText: "OK"
+            })
+        })
     }
-  };
+};
 
   return (
-    <form className="space-y-5">
+    <form onSubmit={handleSubmit} className="space-y-5">
       <div>
-        <label className="block text-sm font-medium text-gray-700">name</label>
+        <label className="block text-sm font-medium text-gray-700">Name</label>
         <input
           type="text"
-          onChange={(e: any) => setName(e.target.value)}
           value={name}
-          className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm"
+          onChange={(e: any) => setName(e.target.value)}
+          className="bg-white text-black mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm"
         />
       </div>
       <div>
         <label className="block text-sm font-medium text-gray-700">
-          avatar
+          Avatar
         </label>
         <input
           type="text"
-          onChange={(e: any) => setName(e.target.value)}
           value={avatar}
-          className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm"
+          onChange={(e: any) => setAvatar(e.target.value)}
+          className="bg-white text-black mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm"
         />
       </div>
       <button
         type="submit"
-        className="w-full px-4 py-2 bg-blue-500 text-white rounded-md shadow-sm hover:bg-blue-600 focus:outline-none"
+        className="w-full px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
       >
         {userId ? "Update" : "Create"}
       </button>
@@ -57,4 +85,4 @@ const userForm: FC<UserformProps> = ({ userId, onSuccess }) => {
   );
 };
 
-export default userForm;
+export default UserForm;

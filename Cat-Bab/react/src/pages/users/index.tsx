@@ -1,4 +1,4 @@
-import {useEffect,React} from 'react'
+import {useEffect} from 'react'
 import {getUsers} from "../../API/apiUrl"
 
 const Users = () => {
