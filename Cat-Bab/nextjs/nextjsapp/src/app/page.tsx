@@ -1,12 +1,10 @@
-import React from 'react'
-import ProductCards from '@/components/ProductCards'
+import React from "react";
+import ProductServer from "@/components/productServer";
+import { ProductItem } from "@/API/api";
 
-const page = () => {
-  return (
-    <div className='w-screen grid grid-cols-3 justify-center items-center'>
-        
-    </div>
-  )
-}
+const Products = async () => {
+return <ProductServer/>
+   
+};
 
-export default page
+export default Products;

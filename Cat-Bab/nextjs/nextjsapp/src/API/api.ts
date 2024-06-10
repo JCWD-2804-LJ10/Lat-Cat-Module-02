@@ -2,112 +2,78 @@ import axios from "axios";
 import { error } from "console";
 export const BASE_URL = "http://localhost:4000/";
 
-interface ProductItem
-{
-    name:string,
-    price:number,
-    description:string,
-    image:string,
-    category:string,
+export interface ProductItem {
+  name: string;
+  price: number;
+  description: string;
+  image?: string;
+  category: string;
+  id: any;
 }
-
-
 
 export const getProducts = async () => {
-  await axios
-    .get(BASE_URL + "products")
-    .then((response: any) => {
-      return {
-        status: response.status,
-        data: response.data,
-      };
-    })
-    .catch((error: any) => {
-      return {
-        error: error,
-      };
-    });
+  try {
+    const response = await axios.get(BASE_URL + "products");
+    return response.data;
+  } catch (error) {
+    console.error("error fetching products", error);
+    throw new Error("failed fetching products");
+  }
 };
 
+export const getProductsById = async (id: String) => {
+  try {
+    const response = await axios.get(BASE_URL + `products/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error("error getting products by id", error);
+    throw new Error(" failed getting products by id");
+  }
+};
 
-export const getProductsById = async (id:String) => {
-    await axios
-      .get(BASE_URL + `products/${id}`)
-      .then((response: any) => {
-        return {
-          status: response.status,
-          data: response.data,
-        };
-      })
-      .catch((error: any) => {
-        return {
-          error: error,
-        };
-      });
+export const postProducts = async (data: ProductItem) => {
+  const body: ProductItem = {
+    name: data.name,
+    price: data.price,
+    description: data.description,
+    image: data.image,
+    category: data.category,
+    id: data?.id
   };
-
-
-
-export const postProducts = async (data:ProductItem) => {
-const body ={
-    name:data.name,
-    price:data.price,
-    description:data.description,
-    image:data.image,
-    category:data.category,
+  try {
+    const response = await axios.post(BASE_URL + "products", body);
+    return response.data;
+  } catch (error) {
+    console.error("error posting products", error);
+    throw new Error("failed posting products");
+  }
 };
 
-await axios
-.post(BASE_URL + "products",body)
-.then((response:any)=>{
-    return{
-        status:response.status,
-        data:response.data
-    };
-})
-.catch((error:any) =>{
-    return{
-        error:error
-    }
-})
-}
+export const editProducts = async (data: ProductItem, id: string):Promise<ProductItem> => {
+  const body = {
+    name: data.name,
+    price: data.price,
+    description: data.description,
+    image: data.image,
+    category: data.category,
+  }
+  try{
+    const response = await axios.put(BASE_URL + `products/${id}`, body);
+    return response.data;
+  }
+  catch(error){
+    console.error("error editing products", error);
+    throw new Error("failed editing products");
+  }
+};
 
-
-export const editProducts = async (data:ProductItem, id:string)  => {
-    const body ={
-        name:data.name,
-        price:data.price,
-        description:data.description,
-        image:data.image,
-        category:data.category,
-    };
-    await axios
-    .put(BASE_URL + `products/${id}`,body)
-    .then((response:any)=>{
-        return{
-            status:response.status,
-            data:response.data
-        };
-    })
-    .catch((error:any) =>{
-        return{
-            error:error
-        }
-    })
-    }
-
-    export const deleteProducts = async (id:string) => {
-        await axios
-        .delete(BASE_URL + `products/${id}`)
-        .then((response:any)=>{
-            return{
-                status:response.status,
-                data:response.data
-            };
-        })
-        .catch((error:any) =>{
-            return{
-                error:error
-            }
-        })
-        }
+export const deleteProducts = async (id: string):Promise<void> => {
+  try{
+    await axios.delete(BASE_URL + `products/${id}`);
+    
+  }
+  catch(error){
+    console.error("error deleting products", error);
+    throw new Error("failed deleting products");
+  }
+};
