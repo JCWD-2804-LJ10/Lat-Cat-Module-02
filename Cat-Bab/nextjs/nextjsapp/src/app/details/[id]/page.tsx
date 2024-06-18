@@ -4,7 +4,7 @@ import DetailsProduct from "@/components/DetailProducts";
 import React from "react";
 
 interface DetailProps{
-  product:ProductItem|null
+  product:ProductItem| null;
 }
 
 const Details: React.FC<DetailProps> = ({product}) => {
