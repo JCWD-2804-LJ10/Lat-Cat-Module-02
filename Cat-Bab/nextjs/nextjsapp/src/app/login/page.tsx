@@ -3,7 +3,6 @@
 import { useRouter } from "next/navigation";
 
 const Login = () => {
-
     const router = useRouter()
     const handleDetailClick= () =>{
         const url = '/details/345'
@@ -12,7 +11,7 @@ const Login = () => {
 
   return (
     <div className='w-scren h-full flex justify-center items-center'>
-        <button 
+        <button
         onClick={ handleDetailClick}
         className='w-40 h-20 bg-cyan-500 hover:bg-cyan-600 rounded-md items-center'>
             Details page
